@@ -12,6 +12,13 @@
 Your account and all data stored on our server are deleted immediately.
 The app signs you out on this device; you can keep using Stepz without an account.
 
+## What is deleted
+
+- Your account profile (Google account ID, email, display name, avatar URL)
+- All synchronized trackers/activities and their history
+- Text notes attached to activities (including text from voice input)
+- Device/session records (installation ID, device model, app/OS version) and sign-in tokens
+
 ## How to request deletion without the app
 
 If you no longer have the app installed, send an email to
