@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last updated:** October 15, 2026
+**Last updated:** October 29, 2026
 
 Welcome to **Stepz**.
 
@@ -66,8 +66,9 @@ Stepz does not collect:
 - your precise or approximate location;
 - your contacts;
 - your phone number;
-- audio recordings (see Section 4);
 - advertising identifiers.
+
+Stepz does **not store** audio recordings. When server speech recognition is used, a voice note is sent to our server only to be converted to text and is discarded immediately (see Section 4).
 
 Stepz does not contain third-party advertising or analytics SDKs.
 
@@ -78,9 +79,10 @@ Stepz does not contain third-party advertising or analytics SDKs.
 We use your data solely to:
 
 - provide the core functionality of the app (tracking and statistics);
+- convert your voice notes to text (see Section 4);
 - authenticate you and keep you signed in across sessions;
 - synchronize and back up your data between your devices;
-- secure your account (e.g. recognizing your devices, signing out of all devices);
+- secure your account and protect the service from abuse (e.g. recognizing your devices, signing out of all devices, limiting the number of speech recognition requests);
 - respond to your support requests.
 
 We do not use your data for advertising, profiling, or selling to third parties.
@@ -89,12 +91,26 @@ We do not use your data for advertising, profiling, or selling to third parties.
 
 # 4. Voice Notes
 
-Voice input in Stepz is processed **entirely on your device** using an offline speech recognition engine.
+Voice input is optional and is used only when you tap the microphone button. Stepz offers two speech recognition modes, which you can switch in Settings.
 
-- Audio is **not recorded, stored, or transmitted** anywhere; it is converted to text in real time and discarded.
-- Only the resulting **text** is saved as a note.
-- If you are signed in, this text is synchronized with our server as part of your activity data (see Section 2.3).
-- The offline speech recognition language model is downloaded from the internet the first time you use voice input for a given language. No personal data is sent during this download.
+## 4.1 Server recognition (default)
+
+- Requires signing in with Google and an internet connection.
+- After you finish speaking, the audio of that single voice note (up to 20 seconds) is sent over an encrypted HTTPS connection, together with the selected language, to our own speech recognition server.
+- The audio is processed in memory only to produce the text and is **discarded immediately**. Neither the audio nor the recognized text is stored or written to server logs.
+- Recognition is performed by our own infrastructure; your audio is **not sent to any third-party speech recognition service** and is **not used to train** any models.
+- For security and to enforce usage limits, the server keeps minimal technical records about each request: your account identifier, a request identifier, time, language, audio duration and length of the resulting text. These records contain no audio or text content.
+- Before recording starts, the app checks whether the server is reachable; this check sends no personal data.
+
+## 4.2 Local recognition (optional)
+
+- If you enable "Use local speech recognition model" in Settings, voice input is processed **entirely on your device** using an offline speech recognition engine.
+- In this mode audio is **not transmitted** anywhere; it is converted to text on the device and discarded.
+- The offline language model is downloaded from the internet the first time you use local recognition for a given language. No personal data is sent during this download. Turning the setting off deletes downloaded models from your device.
+
+## 4.3 Recognized text
+
+In both modes only the resulting **text** is saved as a note. If you are signed in, this text is synchronized with our server as part of your activity data (see Section 2.3).
 
 ---
 
@@ -104,7 +120,8 @@ The core functionality of Stepz is designed to work **offline**. An internet con
 
 - signing in with Google;
 - data synchronization;
-- downloading speech recognition language models.
+- server speech recognition;
+- downloading local speech recognition language models.
 
 ---
 
@@ -115,7 +132,7 @@ We do not sell, rent, or trade your personal data.
 Your data may be processed by the following third parties strictly to provide the service:
 
 - **Google LLC** — authentication via "Sign in with Google" (subject to the [Google Privacy Policy](https://policies.google.com/privacy));
-- **Hetzner Online GmbH** — the hosting provider of the server infrastructure where account data and synchronized data are stored (subject to the [Hetzner Privacy Policy](https://www.hetzner.com/legal/privacy-policy)).
+- **Hetzner Online GmbH** — the hosting provider of the server infrastructure where account data and synchronized data are stored and where voice notes are processed during server speech recognition (subject to the [Hetzner Privacy Policy](https://www.hetzner.com/legal/privacy-policy)).
 
 We may disclose data if required by law or to protect our legal rights.
 
@@ -125,6 +142,8 @@ We may disclose data if required by law or to protect our legal rights.
 
 - Local data stays on your device until you delete it, sign out, or uninstall the app.
 - Account and synchronized data are stored on our server for as long as your account exists.
+- Audio sent for server speech recognition is not stored; it is discarded as soon as the text is produced.
+- Technical request records (Section 4.1) are kept for up to 30 days for security and abuse prevention and are then deleted.
 - When you delete your account (Section 8), your account data and all synchronized data are permanently deleted from our server **immediately**.
 - Session tokens expire automatically and are revoked when you sign out.
 
@@ -137,6 +156,7 @@ You control your data at any time from within the app:
 - **Sign out** — ends your session and removes your synchronized data from the current device. Your data remains on the server and is restored the next time you sign in.
 - **Sign out of all devices** — revokes all active sessions of your account.
 - **Delete account** — permanently and immediately deletes your account and all synchronized data from our server (Settings → Account → Delete account).
+- **Use local speech recognition** — enable it in Settings if you prefer that your voice never leaves your device.
 - **Delete local data** — uninstall the app or clear its data in Android settings.
 
 You may also request access to, correction of, or deletion of your data by contacting us at the address in Section 12. If you are located in the EEA/UK, you have the rights provided by GDPR, including the right to lodge a complaint with a supervisory authority.
@@ -145,7 +165,7 @@ You may also request access to, correction of, or deletion of your data by conta
 
 # 9. Data Security
 
-- All communication between the app and our server is encrypted using HTTPS/TLS.
+- All communication between the app and our server, including voice notes sent for recognition, is encrypted using HTTPS/TLS.
 - Authentication uses short-lived access tokens and revocable refresh tokens; your Google password is never shared with us.
 - Access to server data is restricted to the account owner.
 
